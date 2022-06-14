@@ -1,0 +1,144 @@
+package AllReview;
+
+public class Ch3_Operator {
+    public static void main(String[] args) {
+        // // 삼항 연산자 (a==0)?a=1:a=0;
+        // int x = 10;
+        // int y = 3;
+        // System.out.println(-x + 3); 
+        // // + => -(10+3) => -(13) => -13
+        // // - => (-10)+3 => -10 + 3 => 0=-7
+
+        // int x = 10;
+        // int y = 3;
+        // System.out.println(x + 3 * 7);
+        // // + => 13 * 7 => 91
+        // // * => 10 + 21 => 31
+        // System.out.println(x + 3 > y - 2);
+        // // 10 + 3 > 3 -2 => 13 > 1
+        // System.out.println(x > 3 && x < 5);
+        // // 10 > 3 && 10 < 5
+        // int result = x + y * 3; 
+        // // + => 13 * 3 => 39
+        // // * => 10 + 9 => 19
+        // System.out.println(result); // 19
+
+        // int x = 10;
+        // System.out.println(x << 1); //1 이진수로 변경되고
+        // // 0001 => *2, 0010 => *4, 0100 => *8
+        // System.out.println(x << 2 + 1); // (2+1)이 먼저
+        // System.out.println(x < -1 || x > 3 && x <5); //(x>3 && x<5) 먼저
+        
+        // int i = 0;
+        // int j = 0;
+        // System.out.println(i++); 
+        // System.out.println(++j);
+
+        //Q for문에서는 i++만 본거같은데 전위형으로 쓰는 경우도 있을까요
+        // for(1초기값; 2조건식; 4증감식) { // 전위나 후위나 같다
+        //     3 
+        //     a = +=
+        // }
+
+        // int i = -10;
+        // i = +i; // -10
+        // System.out.println(i);
+        // i = -i; // 10
+        // System.out.println(i);
+
+        // boolean power = false;
+        // power = !power;
+        // System.out.println(power); //true
+        // power = !power;
+        // System.out.println(power); //false
+
+        // byte i = 10;
+        // System.out.println(i);
+        // // 0000 1010
+        // // 1111 0101
+        // //  1 4 16 32 64 // 보수
+        // i = (byte)~i;
+        // System.out.println(i);
+
+        // byte a = 10;
+        // byte b = 20;
+        // byte c = (byte)(a + b); //(byte)((byte)a+(byte)b);
+        // System.out.println(c);
+        // System.out.println(~c);
+
+        // int a = 1000000;
+        // int b = 2000000;
+        // long c = a * b;
+        // System.out.println(c);
+        // c = (long)a * b; // long보다 더 많이 받을 수 있는 자료형 decimal
+        // System.out.println(c);
+
+        // long a = 1000000 * 100000;
+        // System.out.println(a);
+        // long b = 1000000 * 1000000L;
+        // System.out.println(b);
+        // int c = 1000000 * 1000000 / 1000000;
+        // System.out.println(c);
+        // int d = 1000000 / 1000000 * 1000000;
+        // System.out.println(d);
+
+        // char c1 = 'a';
+        // // System.out.println(c1 + 1);
+        // char c2 = (char)(c1 + 1); 
+        // // c2 = 'a' + 1;
+        // // 왜 쓴거지 c2 = 98;
+        // System.out.println(c2);
+        
+        // char c1 = 'a';
+        // char c2 = ++c1;
+        // c1 = 'a' + 1; //mistery
+        // c1 = (char)(c1+2); //c1 + 1->int
+        // System.out.println(c2);
+
+        // float pi = 3.141592f;
+        // float shortPi = (int)(pi * 1000) / 1000f;
+
+        // float pi = 3.141592f;
+        // float shortPi = Math.round(pi * 1000) / 1000f;
+        // System.out.println(shortPi);
+
+        // int share = 10 / 8; // 1.125 -> (int) -> 1
+        // int remain = 10 % 8; // 몫 1, 나머지 2 -> 2
+        // System.out.println(share);
+        // System.out.println(remain);
+
+        // char c = 0;
+        // System.out.println((int)'0');
+        // System.out.println((int)c);
+        
+
+        // Q // SimpleDateFormat에 관련된 것 
+        // DateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일"); 
+        // SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        // // 위 아래 코드 왜 다른거야?
+
+        // Q 부모 클래스로 자손 클래스를 객체화 하면 자손에만 있는 멤버는 못 쓸 수도 있지 않나요? 그런데 느슨한 결합 떄문에 부모 클래스로 하면 문제가 생길것 같습니다...
+        
+        // List l = new ArrayList();
+        // List l2 = new ArrayList();
+        // ArrayList l3 = (ArrayList)l2;
+        // System.out.println('0' == 48);
+        // controller, service inter( interface - serviceImple - A/BserviceImple),
+
+        // int a = 0;
+        // int b = 0;
+        // int c = 0;
+        // if(a > 10){
+        //     b = 10000;
+        // } else { 
+        //     b = 5000;
+        // }
+        // System.out.println(b);
+        
+        // c = (a > 10)? 10000: 5000;
+        // // c = (a > 10)? 10000: (a < 10)? 1: 5000;
+        // System.err.println(c);
+        
+        
+    }
+}
