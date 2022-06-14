@@ -1,0 +1,64 @@
+package AllReview;
+
+import java.util.Scanner;
+
+public class Ch2_Variable {
+    public static void main(String[] args) {
+         // 숫자, 문자, 논리
+        // int, String, boolean
+
+        // 선언
+        // int score;
+
+        // Q 초기값을 0으로 설정하고 나중에 10을 저장하려면 어떻게 해야하나요
+        // int score = 0;
+        // System.out.println(score);
+        // score = 10;
+        // System.out.println(score);
+
+
+        // 값을 할당
+        // score = 100;
+
+        // 선언과 할당을 동시에
+        // int score = 100;
+        // System.out.println(str);
+        
+        // String str = new String("abc");
+        // System.out.println(str);
+
+        // str = null;
+        // System.out.println(str);
+
+        // 자바의 정석 예제를 직접 해보기
+
+        // casting
+        // System.out.println((char)66);
+        // System.out.println((int)'A'); 
+        // System.out.println((int)1.6f); //버림
+        // System.out.println((float)10);
+
+        // byte->int, int->byte
+        // byte b = 10;
+        // int i = (int)b;
+        // System.out.println(i);
+
+        // int i2 = 300;
+        // byte b2 = (byte)i2;
+        // System.out.println(b2); // 300->44
+
+        // System.out.printf("%.2f%n", 10.0/3); //.2 : 소수점 둘째자리 3.33
+        // System.out.printf("%d\n", 0x1A); // 10진법 26
+        // System.out.printf("%x\n", 0x1A); // 16진법 1A
+
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt(); //int num = Integer.paserInt(sc.nextLine());
+        System.out.println(num);
+     
+        String input = sc.nextLine(); // num = sc.nextInt();//sc에서 nextLine하면 String을 받지만
+        num = Integer.parseInt(input); //int를 받게 된다
+        System.out.println(num);
+        sc.close();
+
+    }
+}
