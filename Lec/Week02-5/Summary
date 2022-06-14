@@ -1,0 +1,82 @@
+package Week02F;
+// package Week02Th;
+
+// import java.text.ChoiceFormat;
+// import java.text.MessageFormat;
+// import java.text.SimpleDateFormat;
+// import java.util.ArrayList;
+// import java.util.Calendar;
+
+// /*
+// Calendar
+// Date 
+// DecimalFormat
+// SimpleDateFormat
+// ChoiceFormat
+// MessageFormat
+// java.time ->pass
+// 컬렉션 list, map, set
+// arrayList
+// */
+// public class Summary {
+//     public static void main(String[] args) {
+//         //싱글턴 패턴, 팩토리 패턴으로 전체 나의 프로그램에서 하나의 객체만 가질 수 있다
+//         Calendar cal = Calendar.getInstance();
+//         Date date = cal.getTime();
+//         System.out.println(cal.getTime());
+        
+//         SimpleDateFormat sdf = new SimpleDateFormat();
+//         System.out.println(sdf.format(date));
+//        //DecimalFormat
+//         DecimalFormat df = new DecimalFormat("0");
+//         System.out.println(df.format(12345.6789)); //10진수
+
+//         df = new DecimalFormat("0.0000");
+//         System.out.println(df.format(12345.6789));
+
+//         //ChoiceFormat
+//         int[] point = {61,60,50,80,50,60,70,60,75,65,0};
+//         String patten = "0#불합격|60<합격";
+//         ChoiceFormat cf = new ChoiceFormat("patten");
+
+//         for (int i = 0; i < point.length; i++) {
+//             System.out.println(i+1+"번"+": "+cf.format(point[i]));
+//         }
+ 
+//         //MessageFormat
+//         patten = "First : {0} \n Second : {1} \n Third : {2} Forth : {3}";
+//         Object[] arguments = {"가나다", "ABC", "123", "!@#"};
+//         String result = MessageFormat.format(patten, arguments);
+//         System.out.println(result);
+ 
+//         // ArrayList
+//         ArrayList<E> list = new ArrayList();
+//         list.add("test1");
+//         list.add("test3");
+//         list.add("test5");
+//         list.add("test7");
+//         System.out.println(list);
+//         System.out.println(list.get(3));
+//         list.remove(1);
+//         System.out.println(list);
+//         System.out.println(list.size());
+
+//         ArrayList list2 = new ArrayList();
+//         list2.add("list1");
+//         list2.add("list11");
+
+//         list.addAll(list2);
+
+//         System.out.println(list);
+
+//         //9일차 리뷰
+//         Date d = new Date();
+//         Calendar c = Calendar.getInstance();
+//         // c.set(Calendar.MONTH,2);
+//         // System.out.println(c,MONTH);
+
+//         System.out.println("The Current Month is: "+calndr.get(Calendar.MONTH));
+//         calndr.set(Calendar.DATE,11);
+//         System.out.println("Altered DATE is: "+calndr.get(Calendar.DATE));
+//     }
+// }
