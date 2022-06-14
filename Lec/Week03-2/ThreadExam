@@ -1,0 +1,126 @@
+package Week03T;
+
+import javax.swing.JOptionPane;
+
+public class ThreadExam {
+    static long startTime = 0;
+    public static void main(String[] args) {
+        ThreadEx1_1 t1 = new ThreadEx1_1();
+        ThreadEx1_3 t3 = new ThreadEx1_3();
+
+        Runnable r = new ThreadEx1_2();
+        Thread t2 = new Thread(r);
+
+        t1.start();
+        t2.start();
+        t3.start();
+
+        ThreadEx5_1 th1 = new ThreadEx5_1()
+        th1.start();
+        startTime = System.currentTimeMillis();
+
+        for (int i = 0; i < 100; i++) {
+            System.out.printf("%s", new String("-"));
+        }
+    }
+}
+// ex 13-1
+class ThreadEx1_1 extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(getName());
+        }    
+    }
+}
+class ThreadEx1_2 implements Runnable {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName());
+        }
+    }
+}
+class ThreadEx1_3 extends Thread {
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println(getName());
+        }
+    }
+}
+// ex 13-5 p733
+class ThreadEx5_1 extends Thread {
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            System.out.printf("%s", new String("|"));
+        }
+        System.out.printf("소요시간2: " + (System.currentTimeMillis()-ThreadExam.startTime));
+    }
+}
+
+// ex13 -6
+class ThreadEx6 {
+    public static void main(String[] args) {
+        String input = JOptionPane.showInputDialog("아무 값이나 입력하세요.");
+        System.out.println("입력하신 값은 " + input + "입니다.");
+
+        for (int i = 0; i > 0; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(1000);
+            } catch ( Exception e) {
+
+            }
+        }
+    }   
+}
+
+// ex 13 - 7
+class THreadEx7{ // static method 사용
+    public static void main(String[] args) {
+        ThreadEx7_1 th1 = new ThreadEx7_1();
+        th1.start();
+
+        String input = JOptionPane.showInputDialog("아무 값이나 입력하세요.");
+        System.out.println("입력하신 값은 " + input + "입니다.");
+    }   
+}
+class ThreadEx7_1 extends Thread {
+    public void run() {
+        for (int i = 0; i > 0; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(1000);
+            } catch ( Exception e) {
+
+            }
+        }
+    }
+}
+
+// ex 13-8
+class ThreadEx8 {
+    public static void main(String[] args) {
+        ThreadEx8_1 th1 = new ThreadEx8_1();
+        ThreadEx8_2 th2 = new ThreadEx8_2();
+        th2.setPriority(7);
+        System.out.println("Priority of th1(-): " + th1.getPriority());
+        System.out.println("Priority of th2(-): " + th2.getPriority());
+        th1.start();
+        th2.start();
+    }
+}
+class ThreadEx8_1 extends Thread {
+    public void run() {
+        for (int i = 0; i < 300; i++) {
+            System.out.print("-");
+            for (int j = 0; j < 10000000; j++);
+        }
+    }
+}
+class ThreadEx8_2 extends Thread {
+    public void run() {
+        for (int i = 0; i < 300; i++) {
+            System.out.print("|");
+            for (int j = 0; j < 10000000; j++);
+        }
+    }
+}
