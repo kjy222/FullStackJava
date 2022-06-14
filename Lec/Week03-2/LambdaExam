@@ -1,0 +1,98 @@
+package Week03T;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+public class LambdaExam {
+    @FunctionalInterface
+    interface MyFunction {
+        void run();
+    }
+    class LambdaEx1 {
+        static void execute(MyFunction f) {
+            f.run();
+        }
+        static MyFunction getMyFunction() {
+            MyFunction f = () -> System.out.println("f3.run()");
+            return f;
+        }
+        
+        public static void main(String[] args) {
+            MyFunction f1 = () -> {
+                System.out.println("f1.run()");
+            };
+            // MyFunction f1 = () -> System.out.println("f1.run()");
+            MyFunction f2 = new MyFunction() {
+                @Override // 추가
+                public void run() {
+                    System.out.println("f2.run()");
+                }
+            };
+
+            MyFunction f3 = getMyFunction();
+
+            f1.run();
+            f2.run();
+            f3.run();
+
+            execute(f1);
+            execute(() -> System.out.println("run()"));
+        }
+    }
+}
+
+// ex14-4
+class LambdaEx4 {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(i);
+        }
+        list. forEach(i -> System.out.print(i + ", "));
+        for (int j = 0; j < list.size(); j++) {
+            System.out.println(j + ", ");
+        }
+        for (Integer integer : list) {
+            System.out.println(integer + ", ");
+        }
+        System.out.println();
+
+        list.removeIf(x -> x % 2 == 0 || x % 3 == 0);  // x는 매개변수 x % 2 == 0 || x % 3 == 0는 구현부
+        System.out.println(list);
+
+        list.replaceAll(i -> i * 10);
+        System.out.println(list);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("1", "1");
+        map.put("2", "2");
+        map.put("3", "3");
+        map.put("4", "4");
+
+        map.forEach((k, v) -> System.out.print("{" + k + ", " + v + "}, ")); //(k, v)
+        System.out.println();
+
+        map.forEach((name, i) -> System.out.println(name + "= " + i));
+
+        Function<String, Integer> f = (String s) -> Integer.parseInt(s);
+        f = Integer::parseInt; // :: 클래스 자체에서 람다식 쓸 때 메소드 참조
+    }
+    // void printVar(String name, int i) {
+    //     System.out.println(name + "= " + i);
+    // }
+}
+
+// @FunctionalInterface
+// interface TriFunction<R, T, U, V> {
+//     R apply(T t, U u, V v);
+// }
+// @FunctionalInterface
+// interface DoubleFunction<R, T, U> {
+//     R apply(T t, U u);
+// }
+// @FunctionalInterface
+// interface TFunction<R, T, U, V, X> {
+//     R apply(T t, U u, V v, X x);
+// }
