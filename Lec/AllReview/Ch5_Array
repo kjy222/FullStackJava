@@ -1,0 +1,69 @@
+package AllReview;
+
+public class Ch5_Array {
+    public static void main(String[] args) {
+        // // int[] score; //선언
+        // int[] score = new int[5];
+        // //int[] score = {1, 2, 3, 4, 5};
+        // int arr[] = new int[5];
+        // String[] name = new String[5];
+        // //String[] name= {"1", "2", "3", "4", "5"};
+        // double[] db = new double[5];
+        // boolean b[] = new boolean[5];
+        // //boolean b[] = {false, true, true, false, true};
+        // Math[] math = new Math[5];
+        // score[0] = 100;
+        // score[1] = 200;
+        // score[2] = 300;
+        // score[3] = 400;
+        // score[4] = 500;
+        // arr[0] = 1;
+        // arr[1] = 2;
+        // arr[2] = 3;
+        // arr[3] = 4;
+        // arr[4] = 5;
+        // name[0] = "1";
+        // name[1] = "2";
+        // name[2] = "3";
+        // name[3] = "4";
+        // name[4] = "5";
+        // db[0] = 1;
+        // db[1] = 2;
+        // db[2] = 3;
+        // db[3] = 4;
+        // db[4] = 5;
+        // b[0] = true;
+        // b[1] = true;
+        // b[2] = true;
+        // b[3] = true;
+        // b[4] = true;
+        // System.out.println(name[3]); //"4"
+        // System.out.println(db[4]);
+        // System.out.println(b[1]);  
+
+        // for (int i = 0; i < score.length; i++) {
+        //     System.out.println(i);
+        // }
+        // for (int i : score) {
+        //     System.out.println(i);
+        // }
+
+        // int a[] = new int[10];
+        // //초기값 랜덤 세팅
+        // for (int i; i < a.length; i++) {
+        //     a[i] = (int) (Math.random() * 5);
+        // }
+        // System.out.println(Arrays.toString(a));
+        // System.out.println("====");
+        // for (int i = 0; i < 100; i++) {
+        //     int tmp;
+        //     int pos= (int)(Math.random() * 10);
+        //     System.out.println(pos);
+        //     tmp = a[pos];
+        //     a[0] = tmp;
+        //     a[pos] = a[0]; 
+        // }
+        // System.out.println(Arrays.toString(a));
+
+    }
+}
