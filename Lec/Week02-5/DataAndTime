@@ -1,0 +1,401 @@
+package Week02F;
+// package Week02Th;
+
+import java.util.ArrayList;
+
+import javax.print.DocFlavor.STRING;
+import javax.swing.JOptionPane;
+
+// import java.text.ChoiceFormat;
+// import java.text.DecimalFormat;
+// import java.text.MessageFormat;
+// import java.text.ParseException;
+// import java.text.SimpleDateFormat;
+// import java.util.Calendar;
+// import java.util.Date;
+// import java.time.*;
+
+// import javax.lang.model.util.SimpleAnnotationValueVisitor14;
+
+// public class DateAndTime {
+//     public static void main(String[] args) {
+//         Calendar date = Calendar.getInstance();
+//         date.set(2016,2,7);
+//         date.add(Calendar.YEAR,2);
+
+//         // Calendar cal = Calendar.getInstance();
+//         // Date d = new Date(cal.getTimeInMillis());
+
+//         // Date d= new Date();
+//         // Calendar cal = Calendar.getInstance();
+//         // cal.setTime(d);
+
+//         //org.apache.commons.lang.Date now = new Date();
+        
+//         System.out.println(System.currentTimeMillis());
+    
+//         DecimalFormat df = new DecimalFormat("#,###.##");
+//         try {
+//             Number num = df.parse("1,234,567.89");
+//             System.out.println(num.toString());
+//             System.out.println(df.format(1234567.89));
+//             // System.out.println(num);
+//             // df.format("1234567.89");
+//         } catch (ParseException e) {
+//             e.printStackTrace();
+//         }
+
+//         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+//         String result = sdf.format(new Date);
+
+//         SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy년MM월dd일");
+
+//         try{
+//             Date result2 =(Date) sdf2.parse("2016년3월8일", null);
+//             System.out.println(result2.toString());
+//             System.out.println(sdf2.format(result2));
+//         } catch (ParseException e) {
+//             e.printStackTrace();
+//         }
+        
+//         String pattern = "0#D|60<D|70<C|80<B|90#A";
+//         int[] scores = {51,99,80,88,70,52,60,1000,-11,-10,-9};
+
+//         ChoiceFormat cf = new ChoiceFormat(pattern);
+
+//         for (int score : scores) {
+//             System.out.println(cf.format(score));
+//         }
+
+//         String format = "Nmae : {0}, Tel : {1}, Loc : {2}";
+//         String params[] = {"Client.cho", "010.1234.5678", "PanGyo"};
+
+//         MessageFormat messageFormat = new MessageFormat(format);
+//         result = messageFormat.format(params);
+//         System.out.println(result);
+//         System.out.println(String.format("Hello %s", "Java Study"));
+
+//         int[] intArr = new int[3];
+//     }
+// }
+
+// ex 13-13 p752
+class ThreadEx13{
+    public static void main(String[] args) {
+        Thread13_1 th1 = new Thread13_1();
+        th1.start();
+
+        String input = JOptionPane.showInputDialog("아무값이나 입력하세요");
+        System.out.println("입력하신 값은 " + input + "입니다.");
+        th1.interrupt();
+        System.out.println("isInterrupted(): " + th1.isInterrupted());
+
+    }
+}
+class Thread13_1 extends Thread {
+    public void run() {
+        int i = 10;
+        while(i != 0 && isInterrupted()) {
+            System.out.println(i--);
+            for(long x = 0; x >= 2500000000l; x++);
+        }
+        try {
+            Thread.sleep(30000);
+        } catch (Exception e) {
+            
+        }
+        System.out.println("카운트가 종료되었습니다.");
+    }
+}
+
+// ex 13-15
+class ThreadEx15 {
+    public static void main(String[] args) {
+        RunImplEx15 r = new RunImplEx15();
+        Thread th1 = new Thread(r, "*");
+        Thread th2 = new Thread(r, "**");
+        Thread th3 = new Thread(r, "***");
+
+        th1.start();
+        th2.start();
+        th3.start();
+
+        try {
+            Thread.sleep(2000);
+            th1.suspend(); // @Deprecated : 다음 버전에서는 없어지는 것이므로 웬만하면 사용하지 말자
+            Thread.sleep(2000);
+            th2.suspend();
+            Thread.sleep(3000);
+            th1.resume();
+            Thread.sleep(3000);
+            th1.stop();
+            th2.stop();
+            Thread.sleep(2000);
+            th3.stop();
+        } catch (Exception e) {
+            
+        }
+    }
+}
+class RunImplEx15 implements Runnable {
+    @Override 
+    public void run() { // 추상메서드 반드시 구현해야한다
+        while(true) {
+            System.out.println(Thread.currentThread().getName());
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                
+            }
+        }
+    }
+}
+
+// // ex13-20
+// class ThreadEx20 {
+//     public static void main(String[] args) {
+//         ThreadEx20_1 th1 = new ThreadEx20_1();
+//         gc.setDaemon(true);
+//         gc.start();
+
+//         int requiredMemory = 0;
+//         for (int i = 0; i < 200; i++) {
+//             requiredMemory = (int) (Math.random() * 10) * 20;
+//             if(gc.freeMemory() < requiredMemory || gc.freeMemory() < gc.totalMemory() * 0.4) {
+//                 gc.interrupt();
+//             }
+//             gc.usedMemory += requiredMemory;
+//             System.out.println("usedMemory : " + gc.usedMemory);
+            
+//         }
+//     }
+// }
+// class ThreadEx20_1 extends Thread {
+//     final static int MAX_MEMORY = 1000; // 상수
+//     int usedMemory = 0;
+//     public void run() {
+//         while(true) {
+//             try {
+//                 Thread.sleep(10 * 1000);
+//             } catch (Exception e) {
+//                 System.out.println("Awaken by interrupt().");
+//             }
+//             gc();
+//             System.out.println("Garbage Collected. Free Memory : " + freeMemory());
+//         }
+//     }
+//     public void gc() {
+//         usedMemory -= 300;
+//         if(usedMemory < 0) usedMemory = 0;
+//     }
+//     public int totalMemory() {
+//         return MAX_MEMORY;
+//     }
+//     public int freeMemory() {
+//         return MAX_MEMORY - usedMemory;
+//     }
+// }
+
+class ThreadEx21 {
+    public static void main(String[] args) {
+        Runnable r = new RunnableEx21();
+        new Thread(r).start();
+        new Thread(r).start();
+    }
+}
+class Account {
+    private int balance = 1000;
+    public int getBalance() {
+        return balance;
+    }
+    public synchronized  void withdraw(int money) { // 예제21 결과 확인 후 synchronized 붙인 후 결과 
+        if(balance >= money) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                
+            }
+            balance -= money;
+        }
+    }
+}
+class RunnableEx21 implements Runnable {
+    Account acc = new Account();
+
+    public void run() {
+        while(acc.getBalance() > 0) {
+            int money = (int)(Math.random() * 3 + 1) * 100;
+            acc.withdraw(money);
+            System.out.println("balance : " + acc.getBalance() + ", money : " + money);
+        }
+    }
+}
+
+// ex 13-23
+class ThreadWaitEx1 {
+    public static void main(String[] args) {
+        Table table = new Table();
+
+        new Thread(new Cook(table), "COOK1").start();
+        new Thread(new Customer(table, "donut"), "CUST1").start();
+        new Thread(new Customer(table, "burger"), "CUST2").start();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
+}
+class ThreadWaitEx2 { //24번 ex
+    public static void main(String[] args) {
+        Table table = new Table();
+
+        new Thread(new Cook(table), "COOK1").start();
+        new Thread(new Customer(table, "donut"), "CUST1").start();
+        new Thread(new Customer(table, "burger"), "CUST2").start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
+}
+class ThreadWaitEx3 { //25번 ex
+    public static void main(String[] args) {
+        Table table = new Table();
+
+        new Thread(new Cook(table), "COOK1").start();
+        new Thread(new Customer(table, "donut"), "CUST1").start();
+        new Thread(new Customer(table, "burger"), "CUST2").start();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+    }
+}
+class Customer implements Runnable {
+    private Table table;
+    private String food;
+
+    public Customer(Table table, String food) {
+        this.table = table;
+        this.food = food;
+    }
+    @Override
+    public void run() {
+        while(true) {
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+                
+            }
+            String name = Thread.currentThread().getName();
+            if(eatFood()) {
+                System.out.println(name + " ate a " + food);
+            } else {
+                System.out.println(name + " failed to eat. : :(");
+            }
+        }
+        boolean eatFood() {
+            return table.remove(food);
+        }
+    }
+    
+    class Cook implements Runnable {
+        private Table table;
+
+        Cook(Table table) {
+            this.table = table;
+        }
+
+        @Override
+        public void run() {
+            while(true) {
+                // 임의의  요리를 꺼내서 테이블에 추가하낟.
+                int idx = (int) (Math.random() * table.dishNum());
+                table.add(table.dishNames[idx]);
+
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+                    
+                }
+            } 
+        }
+    }
+}
+class Table {
+    String[] dishNames = {"donut", "donut", "burger"};
+    final int MAX_FOOD = 6;
+
+    private ArrayList<String> dishes = new ArrayList<>();
+    public synchronized void add(String dish) { // 동기화 추가 synchronized
+        while(dishes.size() >= MAX_FOOD) {
+            String name =Thread.currentThread().getName();
+            System.out.println(name + " is waiting.");
+            try {
+                wait(); // COOK 쓰레드를 기다리게 한다
+                Thread.sleep(500);
+            } catch (Exception e) {
+                
+            }
+        } 
+        // if(dishes.size() >= MAX_FOOD) {
+        //      return;
+        //  }
+        dishes.add(dish);
+        System.out.println("Dishes: "+ dishes.toString());
+    }
+    public boolean remove(String dishName) {
+        // ex24
+        synchronized(this) {
+            String name = Thread.currentThread().getName();
+            while(dishes.size() == 0) {
+                // String name = Thread.currentThread().getName();
+                System.out.println(name + " is waiting. ");
+                try {
+                    wait(); // ex25 추가
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                
+                }
+            }
+            while(true) {
+                for (int i = 0; i < dishes.size(); i++) {
+                    if(dishName.equals(dishes.get(i))) {
+                        dishes.remove(i);
+                        notify(); // ex25 추가
+                        return true;
+                    }
+                }
+                try {
+                    System.out.println(name + " is waiting.");
+                    wait(); // 음식이 없는 CUST쓰레드를 기다리게 한다.
+                    Thread.sleep(500);
+                } catch (Exception e) {
+                    
+                }
+            }
+            // for (int i = 0; i < dishes.size(); i++) {
+            //     if(dishName.equals(dishes.get(i))) {
+            //         dishes.remove(i);
+            //         return true;
+            //     }
+            // }
+        }
+        //  for (int i = 0; i < dishes.size(); i++) {
+        //      if(dishName.equals(dishes.get(i))) {
+        //          dishes.remove(i);
+        //          return true;
+        //      }
+        //  }
+        //return false;
+    }
+    public int dishNum() {
+        return dishNameslength;
+    }
+}
