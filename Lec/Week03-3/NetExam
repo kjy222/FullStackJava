@@ -1,0 +1,48 @@
+package Week03W;
+
+import java.net.InetAddress;
+import java.util.Arrays;
+
+public class NetExame {
+    public static void main(String[] args) {
+        
+    }
+    
+}
+
+class NetEx1 {
+    public static void main(String[] args) {
+        InetAddress ip = null;
+        InetAddress[] ipArr = null;
+
+        try {
+            ip = InetAddress.getByName("www.naver.com");
+            System.out.println ("getHostName(): " + ip.getHostName());
+            System.out.println ("getHostAddress(): " + ip.getHostAddress());
+            System.out.println ("toString(): " + ip.toString());
+
+            byte ipAddr[] = ip.getAddress();
+            System.out.println("getAddress(): " + Arrays.toString(ipAddr));
+
+            String result = "";
+            for ( int i = 0; i<ipAddr.length; i++) {
+                result += (ipAddr[i] <0)? ipAddr[i] + 256 : ipAddr[i];
+                result += ", ";
+            }
+            System.out.println("getAddress() + 256: "  + result);
+            System.out.println();
+        } catch (Exception e) {
+
+        }
+        try {
+            ip = InetAddress.getLocalHost();
+            System.out.println("getHostName(): ");
+            System.out.println("getHostAddress(): " + ip.getHostAddress());
+        } catch (Exception e){
+
+        }
+        try {
+            ipArr = InetAddress.getAllByName(("www.naver.com"));
+        }
+    }
+}
