@@ -1,0 +1,12 @@
+package vehicle.car.sportsCar;
+
+public class 맥라렌 {
+    int price; 
+    
+    int getPrice() { //return 타입이 int이다
+        return this.price;
+    }
+    void setPrice(int price) {
+        this.price = price;
+    }
+}
